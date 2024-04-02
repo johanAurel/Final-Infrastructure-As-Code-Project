@@ -131,3 +131,31 @@ kubectl exec -it jenkins-56b6774bb6-vflqs cat /var/jenkins_home/secrets/initialA
 Once you enter the password, proceed to install the suggested plugin and create an admin user.
 
 You should now successfully have access to the Jenkins dashboard!
+
+## Uninstall and Destroy
+
+First uninstall Jenkins, to do so `cd` into the `jenkins` folder and run:
+
+```bash
+kubectl delete -f .
+```
+
+Then delete the Kubernetes namespace created previously, for example:
+
+```bash
+kubectl delete namespace devops-tools
+```
+
+Next, uninstall the `backend` and `frontend` releases created with the Helm charts with the `helm uninstall` command. For example:
+
+```bash
+helm uninstall frontend
+```
+
+Then:
+
+```bash
+helm uninstall backend
+```
+
+Then destroy the AWS infrastructure with `terraform destroy`.
