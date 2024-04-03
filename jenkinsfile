@@ -1,17 +1,35 @@
 pipeline {
     agent any
+    
+    environment {
+        HELM_HOME = '/usr/bin/helm' // Path to Helm binary
+        BACKEND_CHART_PATH = 'helm/backend' // Path to backend Helm chart directory
+        FRONTEND_CHART_PATH = 'helm/frontend' // Path to frontend Helm chart directory
+        K8S_MANIFESTS_PATH = 'kubernetes' // Path to Kubernetes manifests directory
+    }
 
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/johanAurel/ce-team-project.git'
+                git branch: 'main', credentialsId: '59063a9a-5e34-47ff-9e54-ba3c95bcfb27', url: 'https://github.com/johanAurel/ce-team-project.git'
             }
         }
-        stage('Build and Deploy') {
+
+        stage('Install Backend Helm Chart') {
             steps {
-                script {
-                    sh "kubectl apply -f ./kubernetes"
-                }
+                sh "${HELM_HOME} install backend-app ${BACKEND_CHART_PATH}" // Install backend Helm chart
+            }
+        }
+
+        stage('Install Frontend Helm Chart') {
+            steps {
+                sh "${HELM_HOME} install frontend-app ${FRONTEND_CHART_PATH}" // Install frontend Helm chart
+            }
+        }
+
+        stage('Apply Kubernetes Manifests') {
+            steps {
+                sh "kubectl apply -f ${K8S_MANIFESTS_PATH}" // Apply serviceMonitors
             }
         }
     }

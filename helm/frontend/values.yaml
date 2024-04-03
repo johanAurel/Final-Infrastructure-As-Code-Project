@@ -11,7 +11,7 @@ image:
 # Frontend server variables
 server:
   name: fe-server
-  baseApi: ad422aa3fd4e643b4af04018dd421b7e-6446255.eu-west-2.elb.amazonaws.com
+  baseApi: ac9c106501e414b74bb81d5a17da0230-1730684362.eu-west-2.elb.amazonaws.com
 
 # Frontend service variables
 service:
