@@ -15,7 +15,7 @@ variable "private_subnets" {
 
 variable "desired_size" {
   type = number
-  default = 2
+  default = 3
 }
 
 variable "min_size" {
@@ -25,7 +25,7 @@ variable "min_size" {
 
 variable "max_size" {
   type = number
-  default = 2
+  default = 4
 }
 
 variable "node_group_name" {
