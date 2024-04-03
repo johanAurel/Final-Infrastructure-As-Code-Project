@@ -4,7 +4,11 @@
 
 First get credentials for AWSAdministratorAccess (for example, via [Environment variables to configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html?icmpid=docs_sso_user_portal)) then apply the terraform code in the `terraform` directory with `terraform apply` to create the VPC networking and EKS containerisation on AWS.
 
-Next apply the terraform code in the `database` directory with `terraform apply` to create the AWS RDS database instance.
+Next apply the terraform code in the `database` directory with `terraform apply` to create the AWS RDS database instance, take note of the database url.
+
+## Connect Database
+
+Insert the url for the database in the `dbHost` value in the file `helm/backend/values.yaml`.
 
 ## Installing the Helm Charts
 
