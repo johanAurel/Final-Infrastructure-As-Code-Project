@@ -138,7 +138,7 @@ You should now successfully have access to the Jenkins dashboard!
 
 Modify the pipeline script to be `checkout: check out from version control` and add the consequent parameters. Then run the pipeline.
 
-It will automatically run for every commits sent to the repository.
+It will automatically run for every commits sent to the repository and try to run them.
 
 ## Uninstall and Destroy
 
